@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qrCode.dao.UserActivityDao">
+	
+	<!-- 邀请用户 -->
+    <insert id="inviteUser" parameterType="qrCode.model.UserActivityModel">
+        INSERT INTO useractivity(userId, actId, userActState, userActTime, createTime)
+        VALUES
+        (
+        #{userId}, #{actId}, #{userActState}, #{userActTime}, now()
+        )
+    </insert>
+    
+    <!-- 取消邀请 -->
+    <delete id="cancelUser" parameterType="qrCode.model.UserActivityModel">
+    	DELETE FROM useractivity WHERE userId = #{userId} and actId = #{actId}
+    </delete>
+</mapper>

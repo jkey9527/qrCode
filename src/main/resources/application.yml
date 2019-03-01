@@ -14,4 +14,4 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/mysql/*.xml
-  type-aliases-package: springBootDemo.dao
+  type-aliases-package: qrCode.dao
