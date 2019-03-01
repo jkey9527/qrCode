@@ -7,9 +7,9 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
   datasource:
-    url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://39.108.67.248:3306/qrcode?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: 1234
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
 
 mybatis:
