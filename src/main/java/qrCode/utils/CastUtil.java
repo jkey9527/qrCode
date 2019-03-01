@@ -13,5 +13,4 @@ public class CastUtil {
 			return null;
 		}
 	}
-	
 }
