@@ -4,38 +4,40 @@
 <mapper namespace="qrCode.dao.ActivityDao">
 	
 	<!-- 添加用户 -->
-    <insert id="addUser" parameterType="qrCode.model.UserModel">
-        INSERT INTO user(userNo, userName, password, createTime)
+    <insert id="addActivity" parameterType="qrCode.model.ActivityModel">
+        INSERT INTO activity(actNo, actName, actJoinNum, actState, actStartTime, actEndTime, createTime, updateTime)
         VALUES
         (
-        #{userNo}, #{userName}, #{password}, now()
+        #{actNo}, #{actName}, #{actJoinNum}, #{actState}, #{actStartTime}, #{actEndTime}, now(), now()
         )
     </insert>
     
     <!-- 修改用户 -->
-    <update id="updateUser" parameterType="qrCode.model.UserModel">
-    	UPDATE user SET userNo = #{userNo}, userName = #{userName}, password = #{password}
-    	WHERE userId = #{userId}
+    <update id="updateActivity" parameterType="qrCode.model.ActivityModel">
+    	UPDATE activity SET actNo = #{actNo}, actName = #{actName}, actJoinNum = #{actJoinNum}
+    		, actState = #{actState}, actStartTime = #{actStartTime}, actEndTime = #{actEndTime}
+    		, updateTime = now()
+    	WHERE actId = #{actId}
     </update>
     
     <!-- 删除用户 -->
-    <delete id="deleteUser" parameterType="qrCode.model.UserModel">
-    	DELETE FROM user WHERE userId = #{userId}  
+    <delete id="deleteActivity" parameterType="qrCode.model.ActivityModel">
+    	DELETE FROM activity WHERE actId = #{actId}  
     </delete>
     
     <!-- 查询用户 -->
-    <select id="findUser" parameterType="qrCode.model.UserModel" resultType="qrCode.model.UserModel">
-    	SELECT userId, userNo, userName, password, createTime
-    	FROM user
+    <select id="findActivity" parameterType="qrCode.model.ActivityModel" resultType="qrCode.model.ActivityModel">
+    	SELECT actId, actNo, actName, actJoinNum, actState, actStartTime, actEndTime, createTime, updateTime
+    	FROM activity
     	WHERE 1 = 1
-    	<!-- <isNotEmpty prepend="AND" property="userId">
-    		userId = #{userId}
+    	<!-- <isNotEmpty prepend="AND" property="ActivityId">
+    		ActivityId = #{ActivityId}
     	</isNotEmpty>
-    	<isNotEmpty prepend="AND" property="userNo">
-    		userNo = #{userNo}
+    	<isNotEmpty prepend="AND" property="ActivityNo">
+    		ActivityNo = #{ActivityNo}
     	</isNotEmpty>
-    	<isNotEmpty prepend="AND" property="userName">
-    		userName = #{userName}
+    	<isNotEmpty prepend="AND" property="ActivityName">
+    		ActivityName = #{ActivityName}
     	</isNotEmpty> -->
     </select>
 </mapper>
