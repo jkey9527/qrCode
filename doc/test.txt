@@ -1,0 +1,14 @@
+http://localhost:8080/addUser.do?userNo=002&userName=zhangsan2&password=1234
+http://localhost:8080/updateUser.do?userId=1&userNo=003&userName=zhangsan_1&password=000
+http://localhost:8080/deleteUser.do?userId=1
+http://localhost:8080/findUser.do
+
+
+http://localhost:8080/addActivity.do?actNo=001&actName=开会&actJoinNum=10&actState=0
+http://localhost:8080/updateActivity.do?actId=1&actNo=002
+http://localhost:8080/deleteActivity.do?actId=1
+http://localhost:8080/findActivity.do
+
+
+http://localhost:8080/inviteUser.do?userId=1&actId=1&userActState=0
+http://localhost:8080/cancelUser.do?userId=1&actId=1
