@@ -28,14 +28,14 @@
     	SELECT userId, userNo, userName, password, createTime
     	FROM user
     	WHERE 1 = 1
-    	<!-- <isNotEmpty prepend="AND" property="userId">
-    		userId = #{userId}
-    	</isNotEmpty>
-    	<isNotEmpty prepend="AND" property="userNo">
-    		userNo = #{userNo}
-    	</isNotEmpty>
-    	<isNotEmpty prepend="AND" property="userName">
-    		userName = #{userName}
-    	</isNotEmpty> -->
+    	<if test="userId!=null">
+    		AND userId = #{userId}
+    	</if>
+    	<if test="userNo!=null">
+    		AND userNo = #{userNo}
+    	</if>
+    	<if test="userName!=null">
+    		AND userName = #{userName}
+    	</if>
     </select>
 </mapper>

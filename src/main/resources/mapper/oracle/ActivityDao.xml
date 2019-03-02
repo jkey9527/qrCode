@@ -30,14 +30,14 @@
     	SELECT actId, actNo, actName, actJoinNum, actState, actStartTime, actEndTime, createTime, updateTime
     	FROM activity
     	WHERE 1 = 1
-    	<!-- <isNotEmpty prepend="AND" property="ActivityId">
-    		ActivityId = #{ActivityId}
-    	</isNotEmpty>
-    	<isNotEmpty prepend="AND" property="ActivityNo">
-    		ActivityNo = #{ActivityNo}
-    	</isNotEmpty>
-    	<isNotEmpty prepend="AND" property="ActivityName">
-    		ActivityName = #{ActivityName}
-    	</isNotEmpty> -->
+    	<if test="activityId!=null">
+    		AND activityId = #{activityId}
+    	</if>
+    	<if test="activityNo!=null">
+    		AND activityNo = #{activityNo}
+    	</if>
+    	<if test="activityName!=null">
+    		AND activityName = #{activityName}
+    	</if>
     </select>
 </mapper>
