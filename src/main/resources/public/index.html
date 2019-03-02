@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>主页</title>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+<div id="content">
+	<div id="header">
+		<h2>二维码签到系统</h2>
+	</div>
+
+	<div id="person">
+		<i class="glyphicon glyphicon-user" onclick="showModal('个人信息',
+	'<b>姓名：</b>Admin<br><b>角色：</b>管理员<br><b>手机号：</b>183****1008',false);"
+		   title="查看个人信息"></i>
+	</div>
+
+	<div id="wrapper" class="toggled">
+		<nav class="navbar navbar-inverse navbar-fixed-top"
+			 id="sidebar-wrapper" role="navigation">
+			<ul class="nav sidebar-nav">
+				<li class="sidebar-brand"><a href="#" v-on:click="openUrl('main.html');">菜单导航</a></li>
+
+				<li class="dropdown open" v-for="item in menus">
+					<a href="#" class="dropdown-toggle"
+					   data-toggle="dropdown" aria-expanded="true" v-on:click="openOrClose(item.id);">
+						<i class="fa fa-fw fa-plus glyphicon" v-bind:class="item.icon"></i>&nbsp;&nbsp;&nbsp;&nbsp;{{item.name}}<span class="caret"></span>
+					</a>
+					<ul v-bind:id="item.id" class="dropdown-menu" role="menu">
+						<li class="dropdown-header">操作</li>
+						<li v-for="node in item.menu"><a href="#" v-on:click="openUrl(node.url);">{{node.name}}
+							&nbsp;&nbsp;<span class="badge" v-if="node.badge">{{node.badge}}</span></a></li>
+					</ul>
+				</li>
+
+				
+			</ul>
+		</nav>
+	</div>
+
+	<div id="main">
+		<iframe src="main.html"></iframe>
+	</div>
+
+
+	<!--分页-->
+	<div id="pager">
+		<nav aria-label="Page navigation">
+			<ul class="pagination">
+			</ul>
+		</nav>
+	</div>
+
+	<div id="footer">
+		©Copyright 版权所有，盗版必究 Admin
+	</div>
+</div>
+</body>
+
+<!--模态框-->
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" style="overflow: hidden">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				<p>One fine body&hellip;</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button id="ok" type="button" class="btn btn-primary">确定</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+</html>

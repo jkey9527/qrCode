@@ -1,11 +1,6 @@
 server:
   port: 8080
-
 spring:
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
   datasource:
     url: jdbc:mysql://39.108.67.248:3306/qrcode?useUnicode=true&characterEncoding=utf-8
     username: root

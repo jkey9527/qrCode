@@ -1,0 +1,13 @@
+a{
+    text-decoration: underline;
+}
+
+a:hover{
+    color: #987dbf;
+    cursor: pointer;
+}
+
+.check-box{
+    width: 35px;
+    text-align: center;
+}
