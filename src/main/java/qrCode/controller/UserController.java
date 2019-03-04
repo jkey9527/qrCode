@@ -33,7 +33,7 @@ public class UserController {
 		userModel.setPassword(password);
 		//添加用户
 		userService.addUser(userModel);
-        return "添加成功！";
+        return "success";
     }
 	
 	/**
