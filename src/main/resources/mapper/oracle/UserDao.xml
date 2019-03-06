@@ -37,5 +37,11 @@
     	<if test="userName!=null">
     		AND userName = #{userName}
     	</if>
+    	<if test="startTime!=null">
+    		AND createTime >= #{startTime}
+    	</if>
+    	<if test="endTime!=null">
+    		AND  #{endTime} >= createTime
+    	</if>
     </select>
 </mapper>

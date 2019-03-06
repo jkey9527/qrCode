@@ -1,3 +1,4 @@
+//按钮保存事件
 $("#addUser").click(function() {
 	$.ajax({
 		type : 'post',
@@ -6,11 +7,30 @@ $("#addUser").click(function() {
 		cache : false,
 		dataType : 'text',
 		success : function(data) {
-			if ("fail" != data) {
+			if ("success" == data) {
 				alert('保存成功');
 			} else {
-				alert('保存失败');
+				alert(data);
 			}
+			$('#form')[0].reset();
+		}
+	})
+})
+//按钮修改事件
+$("#updateUser").click(function() {
+	$.ajax({
+		type : 'post',
+		data : $('#form').serialize(),
+		url : '../../updateUser.do',
+		cache : false,
+		dataType : 'text',
+		success : function(data) {
+			if ("success" == data) {
+				alert('修改成功');
+			} else {
+				alert(data);
+			}
+			$('#form')[0].reset();
 		}
 	})
 })

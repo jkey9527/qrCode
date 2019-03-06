@@ -11,3 +11,6 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/mysql/*.xml
   type-aliases-package: qrCode.dao
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 
+  

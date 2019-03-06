@@ -1,127 +1,103 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Insert title here</title>
- <link rel="stylesheet" href="../../css/bootstrap.min.css" />
- <link rel="stylesheet" href="../../css/common.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/common.css" />
 </head>
 <body>
 	<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<ul class="breadcrumb">
-				<li>
-					用户管理<span class="divider"></span>
-				</li>
-				<li class="active">
-					删除用户
-				</li>
-			</ul>
-  <div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>
-							用户编号
-						</th>
-						<th>
-							用户名
-						</th>
-						<th>
-							创建时间
-						</th>
-						<th>
-							操作
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							<a href="#">删除</a>
-						</td>
-					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-						<td>
-							<a href="#">删除</a>
-						</td>
-					</tr>
-					<tr class="error">
-						<td>
-							2
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							02/04/2012
-						</td>
-						<td>
-							<a href="#">删除</a>
-						</td>
-					</tr>
-					<tr class="warning">
-						<td>
-							3
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							03/04/2012
-						</td>
-						<td>
-							<a href="#">删除</a>
-						</td>
-					</tr>
-					<tr class="info">
-						<td>
-							4
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							04/04/2012
-						</td>
-						<td>
-							<a href="#">删除</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="breadcrumb">
+					<li>用户管理<span class="divider"></span>
+					</li>
+					<li class="active">删除用户</li>
+				</ul>
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<div class="span12">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>用户编号</th>
+										<th>用户名</th>
+										<th>创建时间</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody id="user_tbody">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-	</div>
-	</div>
-
 </body>
 
 <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/user.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$.ajax({
+			type : 'post',
+			url : '../../findUser.do',
+			cache : false,
+			dataType : 'json',
+			success : function(data) {
+				if (data) {
+					$.each(data, function(idx, obj) {
+						initTable(obj);
+					});
+				}
+			}
+		})
+	})
+	function initTable(obj) {
+		$('#user_tbody')
+				.append(
+						'<tr>'
+								+ '<td>'
+								+ obj.userNo
+								+ '</td>'
+								+ '<td>'
+								+ obj.userName
+								+ '</td>'
+								+ '<td>'
+								+ new Date(obj.createTime)
+										.Format("yyyy-MM-dd HH:mm:ss")
+								+ '</td>'
+								+ '<td>'
+								+ '<a href="javascript:void(0)" onclick="deleteUser(this)">删除</a><input type="hidden" id="userId" value="'+obj.userId+'"/>'
+								+ '</td>' + '</tr>')
+	}
+	function deleteUser(obj) {
+		var tr = $(obj).closest("tr");
+		var userId = tr.find("[id$='userId']").val();
+		$.ajax({
+			type : 'post',
+			url : '../../deleteUser.do',
+			data : {
+				'userId' : userId
+			},
+			cache : false,
+			dataType : 'text',
+			success : function(data) {
+				if ("success" == data) {
+					alert("删除成功");
+					//移除当前行
+					tr.remove();
+				} else {
+					alert(data);
+				}
+			}
+		})
 
-
+	}
+</script>
 </html>
