@@ -36,5 +36,11 @@ public interface ActivityService {
 	 * @return
 	 */
 	List<ActivityModel> findActivity(ActivityModel activityModel);
+	
+	/**
+	 * 废弃活动
+	 * @param activityModel
+	 */
+	void updateActivityState(ActivityModel activityModel);
 
 }

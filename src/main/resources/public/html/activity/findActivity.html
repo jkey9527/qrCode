@@ -1,161 +1,102 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Insert title here</title>
- <link rel="stylesheet" href="../../css/bootstrap.min.css" />
- <link rel="stylesheet" href="../../css/common.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/common.css" />
 </head>
 <body>
 	<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<ul class="breadcrumb">
-				<li>
-					活动管理<span class="divider"></span>
-				</li>
-				<li class="active">
-					新增活动
-				</li>
-			</ul>
-			<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<form class="form-search">
-				<table class="table table-striped">
-					<tbody>
-					<tr>
-					<td align="right">
-					活动编号
-					</td><td>
-					<input class="input-medium search-query" type="text" />
-					</td>
-					<td align="right">
-					活动主题</td><td><input class="input-medium search-query" type="text" />
-					</td>
-					</tr>
-					<tr>
-					<td align="right">
-					活动人数</td><td><input class="input-medium search-query" type="text" />
-					</td>
-					<td align="right">
-					活动状态</td><td><input class="input-medium search-query" type="text" />
-					</td>
-					</tr>
-					<tr>
-					<td align="right">
-					活动开始时间</td><td><input class="input-medium search-query" type="text" />-<input class="input-medium search-query" type="text" />
-					</td>
-					<td align="right">
-					活动结束时间</td><td><input class="input-medium search-query" type="text" />-<input class="input-medium search-query" type="text" />
-					</td>
-					</tr>
-					<tr>
-					<td align="right">
-					创建时间</td><td><input class="input-medium search-query" type="text" />-<input class="input-medium search-query" type="text" />
-					</td>
-					<td align="right">
-					修改时间</td><td><input class="input-medium search-query" type="text" />-<input class="input-medium search-query" type="text" />	
-					</td>
-					</tr>
-					<tr>
-					<td colspan="6" align="right">
-					<button type="submit" class="btn">查找</button>
-					</td>
-					</tr>
-					</tbody>
-				</table>
-			</form>
-			</br>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>
-							活动编号
-						</th>
-						<th>
-							活动主题
-						</th>
-						<th>
-							参与活动人数
-						</th>
-						<th>
-							活动状态
-						</th>
-						<th>
-							活动开始时间
-						</th>
-						<th>
-							活动结束时间
-						</th>
-						<th>
-							创建时间
-						</th>
-						<th>
-							修改时间
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="breadcrumb">
+					<li>活动管理<span class="divider"></span>
+					</li>
+					<li class="active">新增活动</li>
+				</ul>
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<div class="span12">
+							<form class="form-search">
+								<table class="table table-striped">
+									<tbody>
+										<tr>
+											<td align="right">活动编号</td>
+											<td><input class="input-medium search-query" type="text"
+												id="actNo" name="actNo" /></td>
+											<td align="right">活动主题</td>
+											<td><input class="input-medium search-query" type="text"
+												id="actName" name="actName" /></td>
+										</tr>
+										<tr>
+											<td align="right">活动人数</td>
+											<td><input class="input-medium search-query" type="text"
+												id="actJoinNum" name="actJoinNum" /></td>
+											<td align="right">活动状态</td>
+											<td><select class="form-control" id="actState"
+												name="actState">
+													<option value="0">启动</option>
+													<option value="1">进行</option>
+													<option value="2">结束</option>
+													<option value="3">废弃</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td align="right">活动开始时间</td>
+											<td><input class="input-medium search-query"
+												type="datetime-local" id="actStartTimeS"
+												name="actStartTimeS" />-<input
+												class="input-medium search-query" type="datetime-local"
+												id="actStartTimeE" name="actStartTimeE" /></td>
+											<td align="right">活动结束时间</td>
+											<td><input class="input-medium search-query"
+												type="datetime-local" id="actEndTimeS" name="actEndTimeS" />-<input
+												class="input-medium search-query" type="datetime-local"
+												id="actEndTimeE" name="actEndTimeE" /></td>
+										</tr>
+										<tr>
+											<td align="right">创建时间</td>
+											<td><input class="input-medium search-query"
+												type="datetime-local" id="createTimeS" name="createTimeS" />-<input
+												class="input-medium search-query" type="datetime-local"
+												id="createTimeE" name="createTimeE" /></td>
+											<td align="right">修改时间</td>
+											<td><input class="input-medium search-query"
+												type="datetime-local" id="updateTimeS" name="updateTimeS" />-<input
+												class="input-medium search-query" type="datetime-local"
+												id="updateTimeE" name="updateTimeE" /></td>
+										</tr>
+										<tr>
+											<td colspan="6" align="right">
+												<button type="button" class="btn"
+													onclick="queryActivity(this)">查找</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>活动编号</th>
+										<th>活动主题</th>
+										<th>参与活动人数</th>
+										<th>活动状态</th>
+										<th>活动开始时间</th>
+										<th>活动结束时间</th>
+										<th>创建时间</th>
+										<th>修改时间</th>
+									</tr>
+								</tbody>
+								<thead id="activity_tbody">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-		</div>
-	</div>
 	</div>
 
 </body>
@@ -163,6 +104,115 @@
 <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript">
+	$(function() {
+		queryActivity(null);
+	})
+	function queryActivity(obj) {
+		if (obj != null) {
+			var tbody = $(obj).closest("tbody");
+			var actNo = tbody.find("[id$='actNo']").val();
+			var actName = tbody.find("[id$='actName']").val();
+			var actJoinNum = tbody.find("[id$='actJoinNum']").val();
+			var actState = tbody.find("[id$='actState']").val();
+			var actStartTimeS = tbody.find("[id$='actStartTimeS']").val();
+			var actStartTimeE = tbody.find("[id$='actStartTimeE']").val();
+			var actEndTimeS = tbody.find("[id$='actEndTimeS']").val();
+			var actEndTimeE = tbody.find("[id$='actEndTimeE']").val();
+			var createTimeS = tbody.find("[id$='createTimeS']").val();
+			var createTimeE = tbody.find("[id$='createTimeE']").val();
+			var updateTimeS = tbody.find("[id$='updateTimeS']").val();
+			var updateTimeE = tbody.find("[id$='updateTimeE']").val();
+			$.ajax({
+				type : 'post',
+				url : '../../findActivity.do',
+				data : {
+					'actNo' : actNo,
+					'actName' : actName,
+					'actJoinNum' : actJoinNum,
+					'actState' : actState,
+					'actStartTimeS' : actStartTimeS,
+					'actStartTimeE' : actStartTimeE,
+					'actEndTimeS' : actEndTimeS,
+					'actEndTimeE' : actEndTimeE,
+					'createTimeS' : createTimeS,
+					'createTimeE' : createTimeE,
+					'updateTimeS' : updateTimeS,
+					'updateTimeE' : updateTimeE
+				},
+				cache : false,
+				dataType : 'json',
+				success : function(data) {
+					if (data) {
+						$('#activity_tbody').html('');
+						$.each(data, function(idx, obj) {
+							initTable(obj);
+						});
+					}
+				}
+			})
+		} else {
+			$.ajax({
+				type : 'post',
+				url : '../../findActivity.do',
+				cache : false,
+				dataType : 'json',
+				success : function(data) {
+					if (data) {
+						$('#activity_tbody').html('');
+						$.each(data, function(idx, obj) {
+							initTable(obj);
+						});
+					}
+				}
+			})
+		}
 
+	}
+	function initTable(obj) {
+		$('#activity_tbody').append(
+				'<tr>' + '<td>'
+						+ obj.actNo
+						+ '</td>'
+						+ '<td>'
+						+ obj.actName
+						+ '</td>'
+						+ '<td>'
+						+ obj.actJoinNum
+						+ '</td>'
+						+ '<td>'
+						+ toState(obj.actState)
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.actStartTime)
+								.Format("yyyy-MM-dd HH:mm:ss")
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.actEndTime)
+								.Format("yyyy-MM-dd HH:mm:ss")
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.createTime)
+								.Format("yyyy-MM-dd HH:mm:ss")
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.updateTime)
+								.Format("yyyy-MM-dd HH:mm:ss") + '</td>'
+						+ '</tr>')
+	}
+	function toState(obj) {
+		var state = "";
+		if ("0" == obj) {
+			state = "启动";
+		} else if ("1" == obj) {
+			state = "进行";
+		} else if ("2" == obj) {
+			state = "结束";
+		} else if ("3" == obj) {
+			state = "废弃";
+		}
+		return state;
+	}
+</script>
 
 </html>

@@ -1,57 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Insert title here</title>
- <link rel="stylesheet" href="../../css/bootstrap.min.css" />
- <link rel="stylesheet" href="../../css/common.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/common.css" />
 </head>
 <body>
 	<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<ul class="breadcrumb">
-				<li>
-					活动管理<span class="divider"></span>
-				</li>
-				<li class="active">
-					修改活动
-				</li>
-			</ul>
-			<form>
-  <div class="form-group">
-    <label>活动编号</label>
-	<input type="text" class="form-control" placeholder="活动编号">
-  </div>
-  <div class="form-group">
-    <label>活动主题</label>
-	<input type="text" class="form-control" placeholder="活动主题">
-  </div>
-  <div class="form-group">
-    <label>参与活动人数</label>
-	<input type="text" class="form-control" placeholder="参与活动人数">
-  </div>
-  <div class="form-group">
-    <label>活动状态</label>
-	<select class="form-control">
-	<option value="0">启动</option>
-	<option value="1">进行</option>
-	<option value="2">结束</option>
-	<option value="3">废弃</option>
-	</select>
-  </div>
-  <div class="form-group">
-    <label>活动开始时间</label>
-	<input type="text" class="form-control" placeholder="活动开始时间">
-  </div>
-  <div class="form-group">
-    <label>活动结束时间</label>
-	<input type="text" class="form-control" placeholder="活动结束时间">
-  </div>
-  <button type="submit" class="btn btn-default">确定</button>
-</form>
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="breadcrumb">
+					<li>活动管理<span class="divider"></span>
+					</li>
+					<li class="active">修改活动</li>
+				</ul>
+				<form id="form">
+					<div class="form-group">
+						<label>活动编号</label> <input type="text" class="form-control" id="actNo" name="actNo"
+							placeholder="活动编号">
+					</div>
+					<div class="form-group">
+						<label>活动主题</label> <input type="text" class="form-control" id="actName" name="actName"
+							placeholder="活动主题">
+					</div>
+					<div class="form-group">
+						<label>参与活动人数</label> <input type="text" class="form-control" id="actJoinNum" name="actJoinNum"
+							placeholder="参与活动人数">
+					</div>
+					<div class="form-group">
+						<label>活动状态</label> <select class="form-control" id="actState" name="actState">
+							<option value="0">启动</option>
+							<option value="1">进行</option>
+							<option value="2">结束</option>
+							<option value="3">废弃</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>活动开始时间</label> <input type="datetime-local" class="form-control" id="actStartTime" name="actStartTime"
+							placeholder="活动开始时间">
+					</div>
+					<div class="form-group">
+						<label>活动结束时间</label> <input type="datetime-local" class="form-control" id="actEndTime" name="actEndTime"
+							placeholder="活动结束时间">
+					</div>
+					<button type="button" class="btn btn-default" id="updateActivity">确定</button>
+				</form>
+			</div>
 		</div>
-	</div>
 	</div>
 
 </body>
@@ -59,6 +55,6 @@
 <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
-
+<script type="text/javascript" src="../../js/activity.js"></script>
 
 </html>

@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qrCode.dao.ActivityDao">
 	
-	<!-- 添加用户 -->
+	<!-- 添加活动-->
     <insert id="addActivity" parameterType="qrCode.model.ActivityModel">
         INSERT INTO activity(actNo, actName, actJoinNum, actState, actStartTime, actEndTime, createTime, updateTime)
         VALUES
@@ -12,7 +12,7 @@
         )
     </insert>
     
-    <!-- 修改用户 -->
+    <!-- 修改活动-->
     <update id="updateActivity" parameterType="qrCode.model.ActivityModel">
     	UPDATE activity SET actNo = #{actNo}, actName = #{actName}, actJoinNum = #{actJoinNum}
     		, actState = #{actState}, actStartTime = #{actStartTime}, actEndTime = #{actEndTime}
@@ -20,24 +20,59 @@
     	WHERE actId = #{actId}
     </update>
     
-    <!-- 删除用户 -->
+    <!-- 修改活动状态 -->
+    <update id="updateActivityState" parameterType="qrCode.model.ActivityModel">
+    	UPDATE activity SET actState = #{actState} 
+    	WHERE actId = #{actId}
+    </update>
+    <!-- 删除活动-->
     <delete id="deleteActivity" parameterType="qrCode.model.ActivityModel">
     	DELETE FROM activity WHERE actId = #{actId}  
     </delete>
     
-    <!-- 查询用户 -->
+    <!-- 查询活动-->
     <select id="findActivity" parameterType="qrCode.model.ActivityModel" resultType="qrCode.model.ActivityModel">
     	SELECT actId, actNo, actName, actJoinNum, actState, actStartTime, actEndTime, createTime, updateTime
     	FROM activity
     	WHERE 1 = 1
-    	<if test="activityId!=null">
-    		AND activityId = #{activityId}
+    	<if test="actId!=null">
+    		AND actId = #{actId}
     	</if>
-    	<if test="activityNo!=null">
-    		AND activityNo = #{activityNo}
+    	<if test="actNo!=null">
+    		AND actNo = #{actNo}
     	</if>
-    	<if test="activityName!=null">
-    		AND activityName = #{activityName}
+    	<if test="actName!=null">
+    		AND actName = #{actName}
+    	</if>
+    	<if test="actState!=null">
+    		AND actState = #{actState}
+    	</if>
+    	<if test="actJoinNum!=null">
+    		AND actJoinNum = #{actJoinNum}
+    	</if>
+    	<if test="actStartTimeS!=null">
+    		AND actStartTime >= #{actStartTimeS}
+    	</if>
+    	<if test="actStartTimeE!=null">
+    		AND #{actStartTimeE} >= actStartTime
+    	</if>
+    	<if test="actEndTimeS!=null">
+    		AND actEndTime >= #{actEndTimeS}
+    	</if>
+    	<if test="actEndTimeE!=null">
+    		AND #{actEndTimeE} >= actEndTime
+    	</if>
+    	<if test="createTimeS!=null">
+    		AND createTime >= #{createTimeS}
+    	</if>
+    	<if test="createTimeE!=null">
+    		AND #{createTimeE} >= createTime
+    	</if>
+    	<if test="updateTimeS!=null">
+    		AND updateTime = #{updateTimeS}
+    	</if>
+    	<if test="updateTimeE!=null">
+    		AND #{updateTimeE} >= updateTime
     	</if>
     </select>
 </mapper>

@@ -28,7 +28,65 @@ public class ActivityModel {
 	/**修改时间*/
 	private Date updateTime;
 	
+	/*查询参数*/
+	private Date actStartTimeS;
+	private Date actStartTimeE;
+	private Date actEndTimeS;
+	private Date actEndTimeE;
+	private Date createTimeS;
+	private Date createTimeE;
+	private Date updateTimeS;
+	private Date updateTimeE;
 	
+	
+	public Date getActStartTimeS() {
+		return actStartTimeS;
+	}
+	public void setActStartTimeS(Date actStartTimeS) {
+		this.actStartTimeS = actStartTimeS;
+	}
+	public Date getActStartTimeE() {
+		return actStartTimeE;
+	}
+	public void setActStartTimeE(Date actStartTimeE) {
+		this.actStartTimeE = actStartTimeE;
+	}
+	public Date getActEndTimeS() {
+		return actEndTimeS;
+	}
+	public void setActEndTimeS(Date actEndTimeS) {
+		this.actEndTimeS = actEndTimeS;
+	}
+	public Date getActEndTimeE() {
+		return actEndTimeE;
+	}
+	public void setActEndTimeE(Date actEndTimeE) {
+		this.actEndTimeE = actEndTimeE;
+	}
+	public Date getCreateTimeS() {
+		return createTimeS;
+	}
+	public void setCreateTimeS(Date createTimeS) {
+		this.createTimeS = createTimeS;
+	}
+	public Date getCreateTimeE() {
+		return createTimeE;
+	}
+	public void setCreateTimeE(Date createTimeE) {
+		this.createTimeE = createTimeE;
+	}
+	public Date getUpdateTimeS() {
+		return updateTimeS;
+	}
+	public void setUpdateTimeS(Date updateTimeS) {
+		this.updateTimeS = updateTimeS;
+	}
+	public Date getUpdateTimeE() {
+		return updateTimeE;
+	}
+	public void setUpdateTimeE(Date updateTimeE) {
+		this.updateTimeE = updateTimeE;
+	}
 	public Integer getActId() {
 		return actId;
 	}
