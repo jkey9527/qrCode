@@ -1,0 +1,139 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>邀请用户</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/common.css" />
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="breadcrumb">
+					<li>用户管理<span class="divider"></span>
+					</li>
+					<li class="active">取消邀请</li>
+				</ul>
+				<div class="container-fluid">
+
+					<div class="container-fluid">
+						<div class="row-fluid">
+							<div class="span12">
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th><input type="checkbox" onclick="checkAll(this)"/>
+											<th>用户编号</th>
+											<th>用户名</th>
+											<th>创建时间</th>
+										</tr>
+									</thead>
+									<tbody id="user_tbody">
+									</tbody>
+									<tfoot>
+										<tr>
+											<td align="right" colspan="4">
+												<input type="button" value="取消邀请" onclick="cancelUser()"/>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+</body>
+
+<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/jquery.cookies.js"></script>
+<script type="text/javascript">
+	$(function() {
+		queryUser();		
+	})
+	function queryUser() {
+			var actId = $.cookie("actId");
+			$.ajax({
+				type : 'post',
+				url : '../../initInviteUser.do',
+				data : {'actId':actId,'type':'cancel'},
+				cache : false,
+				dataType : 'json',
+				success : function(data) {
+					if (data) {
+						$('#user_tbody').html('');
+						$.each(data, function(idx, obj) {
+							initTable(obj);
+						});
+					}
+				}
+			})
+	}
+	
+	function initTable(obj) {
+		$('#user_tbody').append(
+						'<tr>'
+						+ '<td>'
+						+ '<input type="checkbox" id="check"/><input type="hidden" id="userId" value="'+obj.userId+'"/>'
+						+ '</td>'
+						+ '<td>'
+						+ obj.userNo
+						+ '</td>'
+						+ '<td>'
+						+ obj.userName
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.createTime)
+								.Format("yyyy-MM-dd HH:mm:ss") + '</td>'
+						+ '</tr>')
+	}
+	
+	function checkAll(obj){
+		var checks = $("[id='check']");
+		if(obj.checked){
+			checks.attr('checked',true);
+		}else{
+			checks.attr('checked',false);
+		}
+	}
+	
+	function cancelUser(){
+		var actId = $.cookie("actId");
+		var userIds =[];//定义一个数组    
+        $("[id$='check']:checked").each(function(){
+        	var userId = $(this).closest("tr").find("[id$='userId']").val();
+        	userIds.push(userId);
+        });
+		if(userIds.length==0){
+			alert("请至少选择一条数据");
+			return;
+		}
+		$.ajax({
+			type : 'post',
+			url : '../../cancelUser.do',
+			data : {'actId':actId,'userIds':userIds},
+			cache : false,
+			dataType : 'text',
+			success : function(data) {
+				if (data=="success") {
+					var con = confirm("取消成功，是否退出本页面");
+					if(con==true){
+						window.close();
+					}else{
+						window.location.reload();
+					}
+				}else{
+					alert("取消失败");
+					window.location.reload();
+				}
+			}
+		})
+		
+	}
+</script>
+
+</html>

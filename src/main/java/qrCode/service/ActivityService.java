@@ -5,6 +5,7 @@ package qrCode.service;
 import java.util.List;
 
 import qrCode.model.ActivityModel;
+import qrCode.model.SignModel;
 
 /**
  * 活动服务
@@ -42,5 +43,6 @@ public interface ActivityService {
 	 * @param activityModel
 	 */
 	void updateActivityState(ActivityModel activityModel);
+
 
 }

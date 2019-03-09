@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import qrCode.dao.ActivityDao;
 import qrCode.model.ActivityModel;
+import qrCode.model.SignModel;
 import qrCode.service.ActivityService;
 
 /**
@@ -46,5 +47,6 @@ public class ActivityServiceImpl implements ActivityService {
 	public void updateActivityState(ActivityModel activityModel) {
 		activityDao.updateActivityState(activityModel);
 	}
+
 
 }

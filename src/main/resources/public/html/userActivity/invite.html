@@ -72,6 +72,7 @@
 <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/jquery.cookies.js"></script>
 <script type="text/javascript">
 	$(function() {
 		queryActivity(null);
@@ -149,8 +150,14 @@
 						+ '</tr>')
 	}
 	function invite(obj){
-		
+		var actId = $(obj.closest("tr")).find("[id$='actId']").val();
+		$.cookie("actId",actId); 
+		openWin('inviteUser.html');
 	}
+	
+	function openWin(url) {
+		  window.open(url, '邀请用户', 'height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+		}
 </script>
 
 </html>

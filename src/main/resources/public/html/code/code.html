@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,8 +8,30 @@
  <script src="../../js/jquery.qrcode.min.js"></script>
 <script type="text/javascript">
         $(document).ready(function(){
-         $('#code').qrcode("http://192.168.0.100:8080/login.html");
+        	$.ajax({
+				type : 'post',
+				url : '../../findActivity.do',
+				data : {'actState':'1'},
+				cache : false,
+				dataType : 'json',
+				success : function(data) {
+					if (data) {
+						$('#activity_tbody').html('');
+						$.each(data, function(idx, obj) {
+							$("#activity").append('<option value="'+obj.actId+'">'+obj.actNo+'-'+obj.actName+'</option>');
+						});
+					}
+				}
+			})
 		})
+		function changAct(obj){
+        	var actId = $('#activity option:selected').val();
+        	if("chose"==actId){
+        		$('#code').html('');
+        	}else{
+	        	$('#code').qrcode("http://192.168.0.100:8080/login.html?actId="+actId);
+        	}
+        }
     </script>
 </head>
 <body>
@@ -24,6 +46,11 @@
 					用户签到
 				</li>
 			</ul>
+			<div align="center">
+				<select id="activity" class="form-control" onchange="changAct(this)">
+					<option value='chose'>请选择活动</option>
+				</select>
+			</div></br>
 			<div id="code" align="center"></div></br>
 			<div align="center"><font>请扫描二维码，进行签到</font></div>
 		</div>

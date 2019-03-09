@@ -1,145 +1,75 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Insert title here</title>
- <link rel="stylesheet" href="../../css/bootstrap.min.css" />
- <link rel="stylesheet" href="../../css/common.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/common.css" />
 </head>
 <body>
 	<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<ul class="breadcrumb">
-				<li>
-					签到统计<span class="divider"></span>
-				</li>
-				<li class="active">
-					查询签到情况
-				</li>
-			</ul>
-			<div class="row-fluid">
-		<div class="span12">
-			<form class="form-search">
-				<table class="table table-striped">
-					<tbody>
-					<tr>
-					<td align="right">
-					活动编号
-					</td><td>
-					<input class="input-medium search-query" type="text" />
-					</td>
-					<td align="right">
-					用户编号</td><td><input class="input-medium search-query" type="text" />
-					</td>
-					</tr>
-					<tr>
-					<td align="right">
-					签到状态
-					</td><td>
-					<input class="input-medium search-query" type="text" />
-					</td>
-					<td align="right">
-					签到时间</td><td><input class="input-medium search-query" type="text" />-<input class="input-medium search-query" type="text" />
-					</td>
-					</tr>
-					<tr>
-					<td colspan="4" align="right">
-					<button type="submit" class="btn">查找</button>
-					</td>
-					</tr>
-					</tbody>
-				</table>
-			</form>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>
-							活动编号
-						</th>
-						<th>
-							活动主题
-						</th>
-						<th>
-							用户编号
-						</th>
-						<th>
-							用户名
-						</th>
-						<th>
-							签到状态
-						</th>
-						<th>
-							活动开始时间
-						</th>
-						<th>
-							活动结束时间
-						</th>
-						<th>
-							签到时间
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							01/04/2012
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="row-fluid">
+			<div class="span12">
+				<ul class="breadcrumb">
+					<li>签到统计<span class="divider"></span>
+					</li>
+					<li class="active">查询签到情况</li>
+				</ul>
+				<div class="row-fluid">
+					<div class="span12">
+						<form class="form-search">
+							<table class="table table-striped">
+								<tbody>
+									<tr>
+										<td align="right">活动编号</td>
+										<td><input class="input-medium search-query" type="text" id="actNo" name="actNo"/>
+										</td>
+										<td align="right">用户编号</td>
+										<td><input class="input-medium search-query" type="text" id="userNo" name="userNo"/>
+										</td>
+									</tr>
+									<tr>
+										<td align="right">签到状态</td>
+										<td><select class="form-control" id="signState"
+												name="signState">
+													<option value=""></option>
+													<option value="0">迟到</option>
+													<option value="1">已签到</option>
+													<option value="2">迟到</option>
+											</select>
+										</td>
+										<td align="right">签到时间</td>
+										<td><input class="input-medium search-query" type="datetime-local" id="signTimeS" name="signTimeS"/>-<input
+											class="input-medium search-query" type="datetime-local" id="signTimeE" name="signTimeE"/></td>
+									</tr>
+									<tr>
+										<td colspan="4" align="right">
+											<button type="button" class="btn" onclick="queryUserActivity(this)">查找</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>活动编号</th>
+									<th>活动主题</th>
+									<th>用户编号</th>
+									<th>用户名</th>
+									<th>签到状态</th>
+									<th>活动开始时间</th>
+									<th>活动结束时间</th>
+									<th>签到时间</th>
+								</tr>
+							</thead>
+							<tbody id="activity_tbody">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-		</div>
-	</div>
 	</div>
 
 </body>
@@ -147,6 +77,99 @@
 <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript">
+	$(function() {
+		queryUserActivity(null);
+	})
+	function queryUserActivity(obj) {
+		if (obj != null) {
+			var tbody = $(obj).closest("tbody");
+			var actNo = tbody.find("[id$='actNo']").val();
+			var userNo = tbody.find("[id$='userNo']").val();
+			var signState = tbody.find("[id$='signState']").val();
+			var signTimeS = tbody.find("[id$='signTimeS']").val();
+			var signTimeE = tbody.find("[id$='signTimeE']").val();
+			$.ajax({
+				type : 'post',
+				url : '../../findUserActivity.do',
+				data : {
+					'actNo' : actNo,
+					'userNo' : userNo,
+					'signState' : signState,
+					'signTimeS' : signTimeS,
+					'signTimeE' : signTimeE
+				},
+				cache : false,
+				dataType : 'json',
+				success : function(data) {
+					if (data) {
+						$('#activity_tbody').html('');
+						$.each(data, function(idx, obj) {
+							initTable(obj);
+						});
+					}
+				}
+			})
+		} else {
+			$.ajax({
+				type : 'post',
+				url : '../../findUserActivity.do',
+				cache : false,
+				dataType : 'json',
+				success : function(data) {
+					if (data) {
+						$('#activity_tbody').html('');
+						$.each(data, function(idx, obj) {
+							initTable(obj);
+						});
+					}
+				}
+			})
+		}
 
+	}
+	function initTable(obj) {
+		$('#activity_tbody').append(
+				'<tr>' + '<td>'
+						+ obj.actNo
+						+ '</td>'
+						+ '<td>'
+						+ obj.actName
+						+ '</td>'
+						+ '<td>'
+						+ obj.userNo
+						+ '</td>'
+						+ '<td>'
+						+ obj.userName
+						+ '</td>'
+						+ '<td>'
+						+ toState(obj.signState)
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.actStartTime)
+								.Format("yyyy-MM-dd HH:mm:ss")
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.actEndTime)
+								.Format("yyyy-MM-dd HH:mm:ss")
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.signTime)
+								.Format("yyyy-MM-dd HH:mm:ss")
+						+ '</td>'
+						+ '</tr>')
+	}
+	function toState(obj) {
+		var state = "";
+		if ("0" == obj) {
+			state = "迟到";
+		} else if ("1" == obj) {
+			state = "已签到";
+		} else if ("2" == obj) {
+			state = "迟到";
+		}
+		return state;
+	}
+</script>
 
 </html>

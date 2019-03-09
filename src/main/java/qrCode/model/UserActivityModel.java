@@ -21,6 +21,16 @@ public class UserActivityModel {
 	private Date userActTime;
 	/**创建时间*/
 	private Date createTime;
+	/**类型*/
+	private String type;
+	
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public Integer getUserActId() {
 		return userActId;
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import qrCode.model.ActivityModel;
+import qrCode.model.SignModel;
 
 /**
  * 活动持久层

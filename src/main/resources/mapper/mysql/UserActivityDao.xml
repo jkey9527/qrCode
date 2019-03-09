@@ -5,10 +5,10 @@
 	
 	<!-- 邀请用户 -->
     <insert id="inviteUser" parameterType="qrCode.model.UserActivityModel">
-        INSERT INTO useractivity(userId, actId, userActState, userActTime, createTime)
+        INSERT INTO useractivity(userId, actId, userActState, createTime)
         VALUES
         (
-        #{userId}, #{actId}, #{userActState}, #{userActTime}, now()
+        #{userId}, #{actId}, #{userActState}, now()
         )
     </insert>
     
@@ -16,4 +16,63 @@
     <delete id="cancelUser" parameterType="qrCode.model.UserActivityModel">
     	DELETE FROM useractivity WHERE userId = #{userId} and actId = #{actId}
     </delete>
+    
+    <!-- 初始化邀请用户 -->
+    <select id="initInviteUser" parameterType="qrCode.model.UserActivityModel" resultType="qrCode.model.UserModel">
+    	SELECT a.userId, a.userNo, a.userName, a.createTime FROM user a 
+    	WHERE a.userId
+    	<if test="type=='invite'">
+    	NOT IN
+    	</if>
+    	<if test="type=='cancel'">
+    	IN
+    	</if>
+    	 (SELECT b.userId FROM useractivity b WHERE b.actId=#{actId})
+    </select>
+    
+    <!-- 查询用户是否签到 -->
+   	<select id="findIsSign" parameterType="qrCode.model.UserActivityModel" resultType="qrCode.model.UserActivityModel">
+   		SELECT * FROM useractivity WHERE actId=#{actId} and userId=#{userId} and userActState !=0
+   	</select>
+   	
+   	<!-- 签到 -->
+   	<update id="sign" parameterType="qrCode.model.UserActivityModel">
+   		UPDATE useractivity SET 
+   		userActState = #{userActState},
+   		userActTime = #{userActTime}
+   		WHERE actId=#{actId} and userId=#{userId}
+   	</update>
+   	
+   	<!-- 查询签到情况 -->
+   	<select id="findUserActivity" parameterType="qrCode.model.SignModel" resultType="qrCode.model.SignModel">
+   		SELECT a.userActState "signState",
+   			   a.userActTime "signTime",
+   			   u.userNo,
+   			   u.userName,
+   			   c.actNo,
+   			   c.actName,
+   			   c.actStartTime,
+   			   c.actEndTime 
+   		FROM useractivity a,
+   			 user u, 
+   			 activity c 
+   	    WHERE a.userId = u.userId 
+   	    AND a.actId = c.actId
+   	    AND 1 = 1
+   	    <if test="actNo!=null">
+   	    	AND c.actNo = #{actNo}
+   	    </if>
+   	    <if test="userNo!=null">
+   	    	AND u.userNo = #{userNo}
+   	    </if>
+   	    <if test="signState!=null">
+   	    	AND a.userActState = #{signState}
+   	    </if>
+   	    <if test="signTimeS!=null">
+   	    	AND a.userActTime >= #{signTimeS}
+   	    </if>
+   	    <if test="signTimeE!=null">
+   	    	AND #{signTimeE} >= a.userActTime
+   	    </if>
+   	</select>
 </mapper>

@@ -37,6 +37,9 @@
     	<if test="userName!=null">
     		AND userName = #{userName}
     	</if>
+    	<if test="password!=null">
+    		AND password = #{password}
+    	</if>
     	<if test="startTime!=null">
     		AND createTime >= #{startTime}
     	</if>

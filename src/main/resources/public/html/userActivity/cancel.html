@@ -1,123 +1,163 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <title>Insert title here</title>
- <link rel="stylesheet" href="../../css/bootstrap.min.css" />
- <link rel="stylesheet" href="../../css/common.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/common.css" />
 </head>
 <body>
 	<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<ul class="breadcrumb">
-				<li>
-					用户-活动管理<span class="divider"></span>
-				</li>
-				<li class="active">
-					取消邀请
-				</li>
-			</ul>
+		<div class="row-fluid">
 			<div class="span12">
-			<form class="form-search">
-				<table class="table table-striped">
-					<tbody>
-					<tr>
-					<td align="right">
-					活动编号
-					</td><td>
-					<input class="input-medium search-query" type="text" />
-					</td>
-					<td align="right">
-					活动主题</td><td><input class="input-medium search-query" type="text" />
-					</td>
-					</tr>
-					<tr>
-					<td align="right">
-					活动开始时间</td><td><input class="input-medium search-query" type="text" />-<input class="input-medium search-query" type="text" />
-					</td>
-					<td align="right">
-					活动结束时间</td><td><input class="input-medium search-query" type="text" />-<input class="input-medium search-query" type="text" />
-					</td>
-					</tr>
-					<tr>
-					<td colspan="6" align="right">
-					<button type="submit" class="btn">查找</button>
-					</td>
-					</tr>
-					</tbody>
-				</table>
-			</form>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>
-							活动编号
-						</th>
-						<th>
-							活动主题
-						</th>
-						<th>
-							活动开始时间
-						</th>
-						<th>
-							活动结束时间
-						</th>
-						<th>
-							操作
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							<a href="#">取消邀请</a>
-						</td>
-					</tr>
-					<tr class="success">
-						<td>
-							1
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							TB - Monthly
-						</td>
-						<td>
-							<a href="#">取消邀请</a>
-						</td>
-						</td>
-					</tr>
-				</tbody>
-			</table>
+				<ul class="breadcrumb">
+					<li>用户-活动管理<span class="divider"></span>
+					</li>
+					<li class="active">取消邀请</li>
+				</ul>
+				<div class="row-fluid">
+					<div class="span12">
+						<form class="form-search">
+							<table class="table table-striped">
+								<tbody>
+									<tr>
+										<td align="right">活动编号</td>
+										<td><input class="input-medium search-query" type="text" id="actNo" name="actNo"/>
+										</td>
+										<td align="right">活动主题</td>
+										<td><input class="input-medium search-query" type="text" id="actName" name="actName"/>
+										</td>
+									</tr>
+									<tr>
+										<td align="right">活动开始时间</td>
+											<td><input class="input-medium search-query"
+												type="datetime-local" id="actStartTimeS"
+												name="actStartTimeS" />-<input
+												class="input-medium search-query" type="datetime-local"
+												id="actStartTimeE" name="actStartTimeE" /></td>
+											<td align="right">活动结束时间</td>
+											<td><input class="input-medium search-query"
+												type="datetime-local" id="actEndTimeS" name="actEndTimeS" />-<input
+												class="input-medium search-query" type="datetime-local"
+												id="actEndTimeE" name="actEndTimeE" /></td>
+									</tr>
+									<tr>
+										<td colspan="6" align="right">
+											<button type="button" class="btn" onclick="queryActivity(this)">查找</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>活动编号</th>
+									<th>活动主题</th>
+									<th>活动开始时间</th>
+									<th>活动结束时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody id="activity_tbody">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-		</div>
-	</div>
-	</div>
-
 </body>
 
 <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
 <script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../js/jquery.cookies.js"></script>
+<script type="text/javascript">
+	$(function() {
+		queryActivity(null);
+	})
+	function queryActivity(obj) {
+		if (obj != null) {
+			var tbody = $(obj).closest("tbody");
+			var actNo = tbody.find("[id$='actNo']").val();
+			var actName = tbody.find("[id$='actName']").val();
+			var actStartTimeS = tbody.find("[id$='actStartTimeS']").val();
+			var actStartTimeE = tbody.find("[id$='actStartTimeE']").val();
+			var actEndTimeS = tbody.find("[id$='actEndTimeS']").val();
+			var actEndTimeE = tbody.find("[id$='actEndTimeE']").val();
+			$.ajax({
+				type : 'post',
+				url : '../../findActivity.do',
+				data : {
+					'actNo' : actNo,
+					'actName' : actName,
+					'actState' : '0',
+					'actStartTimeS' : actStartTimeS,
+					'actStartTimeE' : actStartTimeE,
+					'actEndTimeS' : actEndTimeS,
+					'actEndTimeE' : actEndTimeE
+				},
+				cache : false,
+				dataType : 'json',
+				success : function(data) {
+					if (data) {
+						$('#activity_tbody').html('');
+						$.each(data, function(idx, obj) {
+							initTable(obj);
+						});
+					}
+				}
+			})
+		} else {
+			$.ajax({
+				type : 'post',
+				url : '../../findActivity.do',
+				cache : false,
+				data : {'actState':'0'},
+				dataType : 'json',
+				success : function(data) {
+					if (data) {
+						$('#activity_tbody').html('');
+						$.each(data, function(idx, obj) {
+							initTable(obj);
+						});
+					}
+				}
+			})
+		}
 
+	}
+	function initTable(obj) {
+		$('#activity_tbody').append(
+				'<tr>' + '<td>'
+						+ obj.actNo
+						+ '</td>'
+						+ '<td>'
+						+ obj.actName
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.actStartTime)
+								.Format("yyyy-MM-dd HH:mm:ss")
+						+ '</td>'
+						+ '<td>'
+						+ new Date(obj.actEndTime)
+								.Format("yyyy-MM-dd HH:mm:ss")
+						+ '</td>'
+						+ '<td>'
+						+ '<a href="javascript:void(0)" onclick="cancel(this)">取消邀请</a><input type="hidden" id="actId" value="'+obj.actId+'"/>'
+						+ '</td>'
+						+ '</tr>')
+	}
+	function cancel(obj){
+		var actId = $(obj.closest("tr")).find("[id$='actId']").val();
+		$.cookie("actId",actId); 
+		openWin('cancelUser.html');
+	}
+	
+	function openWin(url) {
+		  window.open(url, '取消邀请用户', 'height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+		}
+</script>
 
 </html>
