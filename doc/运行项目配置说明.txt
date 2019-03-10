@@ -1,0 +1,13 @@
+运行该项目，需要的配置如下：
+1.mysql数据库
+2.Eclipse开发软件
+
+修改配置：
+1.在mysql数据库中创建数据库，命名为qrcode
+2.在数据库中执行sql脚本：/qrCode/sql/qrcode.sql
+3.修改src/main/resources/application.yml中的mysql地址、数据用户名、密码
+4.修改src/main/resources/public/html/code/code.html中第32行IP，修改为本机的IP地址
+
+项目启动后，运行请求地址:
+http://localhost:8080/index.html
+手机扫描二维码，一定要和服务器(项目运行电脑)处于同一局域网中
